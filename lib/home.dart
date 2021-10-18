@@ -10,7 +10,7 @@ class _FuelAppState extends State<FuelApp> {
   TextEditingController _controllerGasoline = TextEditingController();
 
   void _calculate() {
-    double priceEtanol = double.tryParse(_controllerEtanol.text);
+    double priceEtanol = double.tryParse(_controllerEtanol.text)
     double priceGasoline = double.tryParse(_controllerGasoline.text);
     String _textResult = "";
 
