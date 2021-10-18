@@ -25,7 +25,7 @@ class _FuelAppState extends State<FuelApp> {
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.only(bottom: 32),
-                child: Image.asset("imagens/logo.png"),
+                child: Image.asset("assets/logo.png"),
               ),
               Padding(
                 padding: EdgeInsets.only(bottom: 10),
