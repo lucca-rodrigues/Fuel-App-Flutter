@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 class FuelApp extends StatefulWidget {
-  const FuelApp({Key? key}) : super(key: key);
-
   @override
   _FuelAppState createState() => _FuelAppState();
 }
@@ -10,6 +8,37 @@ class FuelApp extends StatefulWidget {
 class _FuelAppState extends State<FuelApp> {
   TextEditingController _controllerEtanol = TextEditingController();
   TextEditingController _controllerGasoline = TextEditingController();
+
+  void _calculate() {
+    double priceEtanol = double.tryParse(_controllerEtanol.text);
+    double priceGasoline = double.tryParse(_controllerGasoline.text);
+    String _textResult = "";
+
+    if (priceEtanol == null || priceGasoline == null) {
+      setState(() {
+        _textResult =
+            "Número inválido, digite números maiores que 0 e utilizando (.)";
+      });
+    } else {
+      if ((priceEtanol / priceGasoline) >= 0.7) {
+        setState(() {
+          _textResult = "Melhor abastecer com gasolina";
+        });
+      } else {
+        setState(() {
+          _textResult = "Melhor abastecer com Alcool";
+        });
+      }
+
+      _clearFields();
+    }
+  }
+
+  _clearFields() {
+    _controllerEtanol.text = "";
+    _controllerGasoline.text = "";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,12 +87,12 @@ class _FuelAppState extends State<FuelApp> {
                       "Calcular",
                       style: TextStyle(fontSize: 20),
                     ),
-                    onPressed: () {}),
+                    onPressed: _calculate),
               ),
               Padding(
                 padding: EdgeInsets.only(top: 20),
                 child: Text(
-                  "Resultado",
+                  "${_textResult}",
                   style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                 ),
               )
